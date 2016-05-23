@@ -13,12 +13,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText addBusinessPoint;
     private ListView listBusinessPoint;
-    private list businesspoints;
+    private List businessPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +32,21 @@ public class MainActivity extends AppCompatActivity {
         addBusinessPoint = (EditText) findViewById(R.id.editText);
 
 
+        businessPoints = new ArrayList<BusinessPoint>();
 
-        ArrayList
 
-        ArrayAdapter adapter = new ArrayAdapter(this,   ,businessPoint.getName());
+        final ArrayAdapter<BusinessPoint> adapter = new ArrayAdapter<BusinessPoint>(this, android.R.layout.simple_list_item_1, businessPoints);
 
+        listBusinessPoint.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 BusinessPoint businessPoint = new BusinessPoint();
-
-
+                businessPoint.setName("test");
+                businessPoints.add(businessPoint);
+                adapter.notifyDataSetChanged();
 //
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
